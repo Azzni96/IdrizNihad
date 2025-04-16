@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Idriz & Nihad Web Solutions</title>
+  <title>Webdeving – Idriz & Nihad</title>
   <style>
     :root {
-      --primary: #4f46e5;
-      --background: #f4f4f9;
-      --text: #1f2937;
-      --accent: #6366f1;
+      --primary: #000000;         /* Musta header ja footer */
+      --accent: #cfc3c3;          /* Tumma harmaa (korttien ja taustan vivahde) */
+      --highlight: #84cc16;       /* Lime vihreä esim. hover-efektiin */
+      --background: #958c8c;      /* Yleinen tausta */
+      --text: #f5f5f5;            /* Vaalea teksti */
+      --card-bg: #4f4949;         /* Korttien taustaväri */
     }
 
     body {
@@ -23,7 +25,7 @@
 
     header {
       background: var(--primary);
-      color: white;
+      color: var(--text);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -45,14 +47,14 @@
     }
 
     nav a {
-      color: white;
+      color: var(--text);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
     }
 
     nav a:hover {
-      color: #c7d2fe;
+      color: var(--highlight);
     }
 
     .container {
@@ -64,10 +66,10 @@
     .hero {
       text-align: center;
       padding: 6rem 1rem;
-      background: linear-gradient(to right, #6366f1, #4f46e5);
-      color: white;
+      background: linear-gradient(to right, #111111, #b0a1a1);
+      color: var(--text);
       border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
 
     .hero h1 {
@@ -82,7 +84,7 @@
 
     .button {
       padding: 0.8rem 1.8rem;
-      background-color: white;
+      background-color: var(--text);
       color: var(--primary);
       border: none;
       border-radius: 9999px;
@@ -93,7 +95,8 @@
     }
 
     .button:hover {
-      background-color: #c7d2fe;
+      background-color: var(--highlight);
+      color: black;
     }
 
     .features {
@@ -104,10 +107,10 @@
     }
 
     .card {
-      background: white;
+      background: var(--card-bg);
       padding: 2rem;
       border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       text-align: center;
     }
 
@@ -118,34 +121,32 @@
     .card h3 {
       margin-top: 1rem;
       font-size: 1.3rem;
-      color: var(--primary);
+      color: var(--text);
     }
 
     .card p {
-      color: #4b5563;
+      color: #d4d4d4;
     }
 
     .about {
-      text-align: center;
-      background-color: white;
-      padding: 3rem;
+      background: linear-gradient(to right, #111111, #b0a1a1);
+      padding: 2rem 1rem 3rem 1rem;
+      margin-top: 2rem;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
     .about h2 {
       font-size: 2rem;
+      color: var(--text);
       margin-bottom: 1rem;
     }
 
     .about p {
-      max-width: 700px;
-      margin: 0 auto;
-      color: #4b5563;
+      color: #cccccc;
     }
 
     footer {
-      background-color: #1f2937;
+      background-color: var(--primary);
       color: #d1d5db;
       padding: 1rem 2rem;
       text-align: center;
@@ -154,7 +155,7 @@
 </head>
 <body>
   <header>
-    <h1>Idriz & Nihad Web Solutions</h1>
+    <img src="images/wblogo.jpg" alt="Webdeving Logo" style="height: 90px;">
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
@@ -172,41 +173,93 @@
       <button class="button">Get in Touch</button>
     </section>
 
-    <section class="features" id="services">
-      <div class="card">
-        <img src="https://img.icons8.com/ios/50/language.png" alt="Languages"/>
-        <h3>Multilingual Service</h3>
-        <p>We serve in Finnish, English, Albanian, and Arabic.</p>
+    <section id="services" style="padding: 4rem 1rem;">
+      <!-- Keskitetty otsikko -->
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Our Services</h1>
+        <p style="color: #e0e0e0;">What we offer to boost your online presence</p>
       </div>
-      <div class="card">
-        <img src="https://img.icons8.com/ios/50/rocket--v1.png" alt="Speed"/>
-        <h3>Fast Delivery</h3>
-        <p>Websites delivered quickly without compromising quality.</p>
-      </div>
-      <div class="card">
-        <img src="https://img.icons8.com/ios/50/cheap-2.png" alt="Affordable"/>
-        <h3>Affordable Prices</h3>
-        <p>Ideal for startups and small businesses.</p>
-      </div>
-      <div class="card">
-        <img src="https://img.icons8.com/ios/50/globe--v1.png" alt="Professional"/>
-        <h3>Professional Quality</h3>
-        <p>Modern and responsive designs that build trust.</p>
+    
+      <!-- Kortit rivissä keskitetysti -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1200px; margin: auto;">
+        <div class="card">
+          <img src="https://img.icons8.com/ios/50/language.png" alt="Languages"/>
+          <h3>Multilingual Service</h3>
+          <p>We serve in Finnish, English, Albanian, and Arabic.</p>
+        </div>
+    
+        <div class="card">
+          <img src="https://img.icons8.com/ios/50/rocket--v1.png" alt="Speed"/>
+          <h3>Fast Delivery</h3>
+          <p>We deliver modern websites quickly — without losing quality.</p>
+        </div>
+    
+        <div class="card">
+          <img src="https://img.icons8.com/ios/50/cheap-2.png" alt="Affordable"/>
+          <h3>Affordable Prices</h3>
+          <p>Affordable websites designed by IT students to help your business shine online.</p>
+        </div>
+    
+        <div class="card">
+          <img src="https://img.icons8.com/ios/50/globe--v1.png" alt="Professional"/>
+          <h3>Professional Quality</h3>
+          <p>Responsive, mobile-ready designs that build trust and visibility.</p>
+        </div>
       </div>
     </section>
-
-    <section class="about" id="about">
-      <h2>About Us</h2>
-      <p>
-        We are Idriz and Nihad, second-year IT engineering students at Metropolia University of Applied Sciences.
-        We specialize in building modern websites for businesses that need a strong digital presence.
-        With our diverse language skills and technical knowledge, we help businesses connect with wider audiences – quickly and affordably.
-      </p>
-    </section>
+    
+    
   </div>
 
+  <section class="about" id="about">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; max-width: 1200px; margin: auto;">
+      
+      <!-- Left: About Text -->
+      <div style="flex: 1 1 400px; padding: 1rem;">
+        <h2>About Us</h2>
+        <p>
+          We are Idriz and Nihad, IT engineering students from Metropolia University of Applied Sciences.
+          Under the name <strong>Webdeving</strong>, we help businesses go online with modern, fast and affordable websites.
+          We focus on high-quality design and multilingual service in Finnish, English, Albanian and Arabic.
+        </p>
+      </div>
+
+      <!-- Right: Image -->
+      <div style="flex: 1 1 300px; text-align: center;">
+        <img src="/images/webdesign.jpg" alt="Webdeving logo" style="max-width: 300px; width: 100%; border-radius: 10px;">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="background-color: var(--primary); color: var(--text); padding: 3rem 1rem;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; max-width: 1200px; margin: auto;">
+      <!-- Left: Image -->
+      <div style="flex: 1 1 300px; text-align: center;">
+        <img src="images/wb2.jpg" alt="Profile" style="max-width: 300px; width: 100%; border-radius: 10px; opacity: 0.85;">
+      </div>
+
+      <!-- Right: Contact Info -->
+      <div style="flex: 1 1 300px; padding: 2rem; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Contact Me</h2>
+        <p style="font-size: 1.1rem;">+358 451485832</p>
+        <p style="font-size: 1.1rem;">idriznihad@hotmail.fi</p>
+        <p style="font-size: 1.1rem;">Helsinki, FINLAND</p>
+
+        <h3 style="margin-top: 2rem; font-size: 1.5rem;">Follow Me on Social</h3>
+        <div style="margin-top: 1rem;">
+          <a href="#"><img src="https://img.icons8.com/color/48/behance.png" alt="Behance" style="margin: 0 0.5rem;"></a>
+          <a href="#"><img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram" style="margin: 0 0.5rem;"></a>
+          <a href="#"><img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" style="margin: 0 0.5rem;"></a>
+          <a href="#"><img src="https://img.icons8.com/ios-filled/48/ffffff/twitterx--v1.png" alt="X" style="margin: 0 0.5rem; background-color: #444; padding: 5px; border-radius: 8px;"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>&copy; 2025 Idriz & Nihad Web Solutions. All rights reserved.</p>
+    <p>&copy; 2025 Webdeving – Idriz & Nihad. All rights reserved.</p>
   </footer>
 </body>
 </html>
