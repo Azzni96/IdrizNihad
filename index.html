@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Idriz & Nihad Web Solutions</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --background: #f4f4f9;
+      --text: #1f2937;
+      --accent: #6366f1;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #c7d2fe;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 6rem 1rem;
+      background: linear-gradient(to right, #6366f1, #4f46e5);
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .button {
+      padding: 0.8rem 1.8rem;
+      background-color: white;
+      color: var(--primary);
+      border: none;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #c7d2fe;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .card img {
+      height: 50px;
+    }
+
+    .card h3 {
+      margin-top: 1rem;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .card p {
+      color: #4b5563;
+    }
+
+    .about {
+      text-align: center;
+      background-color: white;
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .about h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #4b5563;
+    }
+
+    footer {
+      background-color: #1f2937;
+      color: #d1d5db;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Idriz & Nihad Web Solutions</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section class="hero" id="home">
+      <h1>Your Vision, Our Code</h1>
+      <p>Affordable. Fast. Multilingual. Professional web design services tailored for your business.</p>
+      <button class="button">Get in Touch</button>
+    </section>
+
+    <section class="features" id="services">
+      <div class="card">
+        <img src="https://img.icons8.com/ios/50/language.png" alt="Languages"/>
+        <h3>Multilingual Service</h3>
+        <p>We serve in Finnish, English, Albanian, and Arabic.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios/50/rocket--v1.png" alt="Speed"/>
+        <h3>Fast Delivery</h3>
+        <p>Websites delivered quickly without compromising quality.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios/50/cheap-2.png" alt="Affordable"/>
+        <h3>Affordable Prices</h3>
+        <p>Ideal for startups and small businesses.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios/50/globe--v1.png" alt="Professional"/>
+        <h3>Professional Quality</h3>
+        <p>Modern and responsive designs that build trust.</p>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About Us</h2>
+      <p>
+        We are Idriz and Nihad, second-year IT engineering students at Metropolia University of Applied Sciences.
+        We specialize in building modern websites for businesses that need a strong digital presence.
+        With our diverse language skills and technical knowledge, we help businesses connect with wider audiences – quickly and affordably.
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Idriz & Nihad Web Solutions. All rights reserved.</p>
+  </footer>
+</body>
+</html>
