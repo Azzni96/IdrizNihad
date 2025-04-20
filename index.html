@@ -4,166 +4,497 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Webdeving – Idriz & Nihad</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
   <style>
     :root {
-      --primary: #000000;         /* Musta header ja footer */
-      --accent: #cfc3c3;          /* Tumma harmaa (korttien ja taustan vivahde) */
-      --highlight: #84cc16;       /* Lime vihreä esim. hover-efektiin */
-      --background: #958c8c;      /* Yleinen tausta */
-      --text: #f5f5f5;            /* Vaalea teksti */
-      --card-bg: #4f4949;         /* Korttien taustaväri */
+      --primary: #121212;
+      --accent: #2d2d2d;
+      --highlight: #84cc16;
+      --background: #1e1e1e;
+      --text: #f5f5f5;
+      --card-bg: #2a2a2a;
+      --gradient-start: #121212;
+      --gradient-end: #3d3d3d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
       background-color: var(--background);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
     header {
-      background: var(--primary);
-      color: var(--text);
-      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      background: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
+    .logo {
+      height: 65px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     nav ul {
-      list-style: none;
       display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
+      gap: 2rem;
+      list-style: none;
     }
 
     nav a {
+      position: relative;
       color: var(--text);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
+      font-size: 1.05rem;
+      padding: 0.5rem 0;
     }
 
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--highlight);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+    
     nav a:hover {
       color: var(--highlight);
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 2rem;
     }
 
     .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 6rem 1rem;
-      background: linear-gradient(to right, #111111, #b0a1a1);
+      padding: 8rem 2rem;
+      margin: 2rem 0;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
       color: var(--text);
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      animation: shine 8s infinite linear;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%);
+      }
+      100% {
+        transform: translateX(100%) translateY(100%);
+      }
     }
 
     .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+      animation: fadeInDown 1s ease;
     }
 
     .hero p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease 0.3s both;
     }
 
     .button {
-      padding: 0.8rem 1.8rem;
-      background-color: var(--text);
-      color: var(--primary);
+      padding: 1rem 2.2rem;
+      background-color: var(--highlight);
+      color: #000;
       border: none;
       border-radius: 9999px;
-      font-size: 1rem;
-      font-weight: bold;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(132, 204, 22, 0.4);
+      animation: fadeIn 1s ease 0.6s both;
     }
 
     .button:hover {
-      background-color: var(--highlight);
-      color: black;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(132, 204, 22, 0.5);
     }
 
-    .features {
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-top: 2rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title p {
+      color: #e0e0e0;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.8;
+    }
+
+    .services {
+      padding: 5rem 1rem;
+    }
+
+    .service-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin: 4rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .card {
       background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       text-align: center;
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--highlight);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
     }
 
     .card img {
-      height: 50px;
+      height: 60px;
+      margin-bottom: 1.5rem;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.1) rotate(5deg);
     }
 
     .card h3 {
       margin-top: 1rem;
-      font-size: 1.3rem;
-      color: var(--text);
-    }
-
-    .card p {
-      color: #d4d4d4;
-    }
-
-    .about {
-      background: linear-gradient(to right, #111111, #b0a1a1);
-      padding: 2rem 1rem 3rem 1rem;
-      margin-top: 2rem;
-      border-radius: 10px;
-    }
-
-    .about h2 {
-      font-size: 2rem;
+      font-size: 1.4rem;
+      font-weight: 600;
       color: var(--text);
       margin-bottom: 1rem;
     }
 
-    .about p {
-      color: #cccccc;
+    .card p {
+      color: #d4d4d4;
+      font-size: 1.05rem;
+    }
+
+    .about {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      padding: 4rem 2rem;
+      margin: 4rem 0;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      max-width: 1400px;
+      margin: auto;
+      gap: 3rem;
+    }
+
+    .about-text {
+      flex: 1 1 500px;
+      padding: 1rem;
+    }
+
+    .about-text h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #f0f0f0;
+    }
+
+    .about-image {
+      flex: 1 1 400px;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.5s ease;
+    }
+
+    .about-image img:hover {
+      transform: scale(1.03);
+    }
+
+    .contact {
+      background-color: var(--primary);
+      color: var(--text);
+      padding: 5rem 2rem;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      max-width: 1400px;
+      margin: auto;
+      gap: 3rem;
+    }
+
+    .contact-image {
+      flex: 1 1 400px;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .contact-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.5s ease;
+      opacity: 0.85;
+    }
+
+    .contact-info {
+      flex: 1 1 400px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .contact-info h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-info p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px);
+      background-color: var(--highlight);
+    }
+
+    .social-icon img {
+      width: 28px;
+      height: 28px;
     }
 
     footer {
       background-color: var(--primary);
       color: #d1d5db;
-      padding: 1rem 2rem;
+      padding: 2rem;
       text-align: center;
+      font-size: 1.1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      nav ul {
+        margin-top: 1rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero {
+        padding: 5rem 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .about-text h2, .contact-info h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .button {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+      
+      .card {
+        padding: 2rem 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="images/wblogo.jpg" alt="Webdeving Logo" style="height: 90px;">
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <img src="images/wblogo.jpg" alt="Webdeving Logo" class="logo">
+      <nav>
+        <ul>
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <div class="container">
@@ -173,49 +504,43 @@
       <button class="button">Get in Touch</button>
     </section>
 
-    <section id="services" style="padding: 4rem 1rem;">
-      <!-- Keskitetty otsikko -->
-      <div style="text-align: center; margin-bottom: 3rem;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Our Services</h1>
-        <p style="color: #e0e0e0;">What we offer to boost your online presence</p>
+    <section id="services" class="services">
+      <div class="section-title">
+        <h2>Our Services</h2>
+        <p>What we offer to boost your online presence</p>
       </div>
     
-      <!-- Kortit rivissä keskitetysti -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1200px; margin: auto;">
+      <div class="service-grid">
         <div class="card">
-          <img src="https://img.icons8.com/ios/50/language.png" alt="Languages"/>
+          <img src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/svg/line/language.svg" alt="Languages"/>
           <h3>Multilingual Service</h3>
           <p>We serve in Finnish, English, Albanian, and Arabic.</p>
         </div>
     
         <div class="card">
-          <img src="https://img.icons8.com/ios/50/rocket--v1.png" alt="Speed"/>
+          <img src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/svg/line/rocket.svg" alt="Speed"/>
           <h3>Fast Delivery</h3>
           <p>We deliver modern websites quickly — without losing quality.</p>
         </div>
     
         <div class="card">
-          <img src="https://img.icons8.com/ios/50/cheap-2.png" alt="Affordable"/>
+          <img src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/svg/line/money-bill.svg" alt="Affordable"/>
           <h3>Affordable Prices</h3>
           <p>Affordable websites designed by IT students to help your business shine online.</p>
         </div>
     
         <div class="card">
-          <img src="https://img.icons8.com/ios/50/globe--v1.png" alt="Professional"/>
+          <img src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/svg/line/globe.svg" alt="Professional"/>
           <h3>Professional Quality</h3>
           <p>Responsive, mobile-ready designs that build trust and visibility.</p>
         </div>
       </div>
     </section>
-    
-    
   </div>
 
   <section class="about" id="about">
-    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; max-width: 1200px; margin: auto;">
-      
-      <!-- Left: About Text -->
-      <div style="flex: 1 1 400px; padding: 1rem;">
+    <div class="about-container">
+      <div class="about-text">
         <h2>About Us</h2>
         <p>
           We are Idriz and Nihad, IT engineering students from Metropolia University of Applied Sciences.
@@ -224,36 +549,40 @@
         </p>
       </div>
 
-      <!-- Right: Image -->
-      <div style="flex: 1 1 300px; text-align: center;">
-        <img src="/images/webdesign.jpg" alt="Webdeving logo" style="max-width: 300px; width: 100%; border-radius: 10px;">
+      <div class="about-image">
+        <img src="images/webdesign.jpg" alt="Web Design">
       </div>
-
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" style="background-color: var(--primary); color: var(--text); padding: 3rem 1rem;">
-    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; max-width: 1200px; margin: auto;">
-      <!-- Left: Image -->
-      <div style="flex: 1 1 300px; text-align: center;">
-        <img src="images/wb2.jpg" alt="Profile" style="max-width: 300px; width: 100%; border-radius: 10px; opacity: 0.85;">
+  <section id="contact" class="contact">
+    <div class="contact-container">
+      <div class="contact-image">
+        <img src="images/wb2.jpg" alt="Profile">
       </div>
 
-      <!-- Right: Contact Info -->
-      <div style="flex: 1 1 300px; padding: 2rem; text-align: center;">
-        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Contact Me</h2>
-        <p style="font-size: 1.1rem;">+358 451485832</p>
-        <p style="font-size: 1.1rem;">idriznihad@hotmail.fi</p>
-        <p style="font-size: 1.1rem;">Helsinki, FINLAND</p>
+      <div class="contact-info">
+        <h2>Contact Us</h2>
+        <p>+358 451485832</p>
+        <p>idriznihad@hotmail.fi</p>
+        <p>Helsinki, FINLAND</p>
 
-        <h3 style="margin-top: 2rem; font-size: 1.5rem;">Follow Me on Social</h3>
-        <div style="margin-top: 1rem;">
-          <a href="#"><img src="https://img.icons8.com/color/48/behance.png" alt="Behance" style="margin: 0 0.5rem;"></a>
-          <a href="#"><img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram" style="margin: 0 0.5rem;"></a>
-          <a href="#"><img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" style="margin: 0 0.5rem;"></a>
-          <a href="#"><img src="https://img.icons8.com/ios-filled/48/ffffff/twitterx--v1.png" alt="X" style="margin: 0 0.5rem; background-color: #444; padding: 5px; border-radius: 8px;"></a>
+        <h3 class="text-2xl font-semibold mt-8 mb-4">Follow Us on Social</h3>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/" class="social-icon" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/instagram.svg" alt="Instagram">
+          </a>
+          <a href="https://x.com/" class="social-icon" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/twitter.svg" alt="X">
+          </a>
+          <a href="https://www.facebook.com/" class="social-icon" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/facebook.svg" alt="Facebook">
+          </a>
+          <a href="https://www.linkedin.com/" class="social-icon" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/linkedin.svg" alt="LinkedIn">
+          </a>
         </div>
+               
       </div>
     </div>
   </section>
@@ -261,5 +590,40 @@
   <footer>
     <p>&copy; 2025 Webdeving – Idriz & Nihad. All rights reserved.</p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Animate elements when they come into view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated', 'animate__fadeIn');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.card, .about-text, .about-image, .contact-info, .contact-image').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
