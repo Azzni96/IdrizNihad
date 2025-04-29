@@ -6,576 +6,170 @@
   <title>Webdeving – Idriz & Nihad</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
-  <style>
-    :root {
-      --primary: #121212;
-      --accent: #2d2d2d;
-      --highlight: #84cc16;
-      --background: #1e1e1e;
-      --text: #f5f5f5;
-      --card-bg: #2a2a2a;
-      --gradient-start: #121212;
-      --gradient-end: #3d3d3d;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      transition: all 0.3s ease;
-    }
-
-    body {
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background-color: var(--background);
-      color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(18, 18, 18, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-    }
-
-    .logo {
-      height: 65px;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    nav ul {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    nav a {
-      position: relative;
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1.05rem;
-      padding: 0.5rem 0;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--highlight);
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-    
-    nav a:hover {
-      color: var(--highlight);
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 8rem 2rem;
-      margin: 2rem 0;
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      color: var(--text);
-      border-radius: 20px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-      animation: shine 8s infinite linear;
-    }
-
-    @keyframes shine {
-      0% {
-        transform: translateX(-100%) translateY(-100%);
-      }
-      100% {
-        transform: translateX(100%) translateY(100%);
-      }
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.03em;
-      animation: fadeInDown 1s ease;
-    }
-
-    .hero p {
-      font-size: 1.4rem;
-      max-width: 800px;
-      margin-bottom: 2.5rem;
-      opacity: 0.9;
-      animation: fadeInUp 1s ease 0.3s both;
-    }
-
-    .button {
-      padding: 1rem 2.2rem;
-      background-color: var(--highlight);
-      color: #000;
-      border: none;
-      border-radius: 9999px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(132, 204, 22, 0.4);
-      animation: fadeIn 1s ease 0.6s both;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 7px 20px rgba(132, 204, 22, 0.5);
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 3.5rem;
-      padding-top: 2rem;
-    }
-
-    .section-title h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      letter-spacing: -0.02em;
-    }
-
-    .section-title p {
-      color: #e0e0e0;
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto;
-      opacity: 0.8;
-    }
-
-    .services {
-      padding: 5rem 1rem;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      transform: translateY(0);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--highlight);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-      z-index: -1;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card img {
-      height: 60px;
-      margin-bottom: 1.5rem;
-      filter: brightness(0) invert(1);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover img {
-      transform: scale(1.1) rotate(5deg);
-    }
-
-    .card h3 {
-      margin-top: 1rem;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .card p {
-      color: #d4d4d4;
-      font-size: 1.05rem;
-    }
-
-    .about {
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      padding: 4rem 2rem;
-      margin: 4rem 0;
-      border-radius: 20px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-    }
-
-    .about-container {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      max-width: 1400px;
-      margin: auto;
-      gap: 3rem;
-    }
-
-    .about-text {
-      flex: 1 1 500px;
-      padding: 1rem;
-    }
-
-    .about-text h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    .about-text p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #f0f0f0;
-    }
-
-    .about-image {
-      flex: 1 1 400px;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .about-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-      transition: transform 0.5s ease;
-    }
-
-    .about-image img:hover {
-      transform: scale(1.03);
-    }
-
-    .contact {
-      background-color: var(--primary);
-      color: var(--text);
-      padding: 5rem 2rem;
-    }
-
-    .contact-container {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      max-width: 1400px;
-      margin: auto;
-      gap: 3rem;
-    }
-
-    .contact-image {
-      flex: 1 1 400px;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .contact-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-      transition: transform 0.5s ease;
-      opacity: 0.85;
-    }
-
-    .contact-info {
-      flex: 1 1 400px;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .contact-info h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      letter-spacing: -0.02em;
-    }
-
-    .contact-info p {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .social-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: var(--accent);
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background-color: var(--highlight);
-    }
-
-    .social-icon img {
-      width: 28px;
-      height: 28px;
-    }
-
-    footer {
-      background-color: var(--primary);
-      color: #d1d5db;
-      padding: 2rem;
-      text-align: center;
-      font-size: 1.1rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        padding: 1rem;
-      }
-      
-      nav ul {
-        margin-top: 1rem;
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .hero {
-        padding: 5rem 1rem;
-      }
-      
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      
-      .hero p {
-        font-size: 1.1rem;
-      }
-      
-      .section-title h2 {
-        font-size: 2rem;
-      }
-      
-      .about-text h2, .contact-info h2 {
-        font-size: 2rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .button {
-        padding: 0.8rem 1.8rem;
-        font-size: 1rem;
-      }
-      
-      .card {
-        padding: 2rem 1.5rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Kielivalinta - Liput kuvina + tekstit -->
+  <div style="text-align: right; padding: 1rem;">
+    <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+      
+      <!-- Liput -->
+      <div style="display: flex; gap: 0.5rem;">
+        <button id="flag-fi" onclick="setLanguage('fi')" style="background: none; border: none; cursor: pointer;">
+          <img src="https://flagcdn.com/w40/fi.png" alt="FI" width="40">
+        </button>
+        <button id="flag-en" onclick="setLanguage('en')" style="background: none; border: none; cursor: pointer;">
+          <img src="https://flagcdn.com/w40/gb.png" alt="EN" width="40">
+        </button>
+      </div>
+
+      <!-- Tekstit -->
+      <div style="display: flex; gap: 0.5rem;">
+        <button id="text-fi" onclick="setLanguage('fi')" style="background: none; border: none; color: white; cursor: pointer; font-weight: bold;">FI</button>
+        <span style="color: white;">|</span>
+        <button id="text-en" onclick="setLanguage('en')" style="background: none; border: none; color: white; cursor: pointer;">EN</button>
+      </div>
+
+    </div>
+  </div>
+
   <header>
     <div class="header-container">
       <img src="images/wblogo.jpg" alt="Webdeving Logo" class="logo">
       <nav>
         <ul>
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <a href="#home" class="nav-link fi">Etusivu</a>
+            <a href="#home" class="nav-link en" style="display:none;">Home</a>
+          </li>
+          <li>
+            <a href="#services" class="nav-link fi">Palvelut</a>
+            <a href="#services" class="nav-link en" style="display:none;">Services</a>
+          </li>
+          <li>
+            <a href="#about" class="nav-link fi">Meistä</a>
+            <a href="#about" class="nav-link en" style="display:none;">About</a>
+          </li>
+          <li>
+            <a href="#contact" class="nav-link fi">Yhteystiedot</a>
+            <a href="#contact" class="nav-link en" style="display:none;">Contact</a>
+          </li>
         </ul>
       </nav>
+      
     </div>
   </header>
 
   <div class="container">
     <section class="hero" id="home">
-      <h1>Your Vision, Our Code</h1>
-      <p>Affordable. Fast. Multilingual. Professional web design services tailored for your business.</p>
-      <button class="button">Get in Touch</button>
+      <h1 class="fi">Teidän Visionne, Meidän Koodimme</h1>
+      <h1 class="en" style="display:none;">Your Vision, Our Code</h1>
+    
+      <p class="fi">Edulliset. Nopeat. Monikieliset. Ammattimaiset verkkosivut yrityksellesi.</p>
+      <p class="en" style="display:none;">Affordable. Fast. Multilingual. Professional web design services tailored for your business.</p>
+    
+      <div>
+        <button class="button fi">Ota yhteyttä</button>
+        <button class="button en" style="display:none;">Contact us</button>
+      </div>
+      
     </section>
 
     <section id="services" class="services">
       <div class="section-title">
-        <h2>Our Services</h2>
-        <p>What we offer to boost your online presence</p>
+        <h2 class="fi">Palvelumme</h2>
+        <h2 class="en" style="display:none;">Our Services</h2>
+    
+        <p class="fi">Mitä tarjoamme vahvistaaksemme verkkonäkyvyyttäsi</p>
+        <p class="en" style="display:none;">What we offer to boost your online presence</p>
       </div>
     
       <div class="service-grid">
         <div class="card">
           <img src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/svg/line/language.svg" alt="Languages"/>
-          <h3>Multilingual Service</h3>
-          <p>We serve in Finnish, English, Albanian, and Arabic.</p>
+          <h3 class="fi">Monikielinen palvelu</h3>
+          <h3 class="en" style="display:none;">Multilingual Service</h3>
+          <p class="fi">Palvelemme suomeksi, englanniksi, albaniaksi ja arabiaksi.</p>
+          <p class="en" style="display:none;">We serve in Finnish, English, Albanian, and Arabic.</p>
         </div>
     
         <div class="card">
           <img src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/svg/line/rocket.svg" alt="Speed"/>
-          <h3>Fast Delivery</h3>
-          <p>We deliver modern websites quickly — without losing quality.</p>
+          <h3 class="fi">Nopea toimitus</h3>
+          <h3 class="en" style="display:none;">Fast Delivery</h3>
+          <p class="fi">Toimitamme modernit verkkosivut nopeasti laadusta tinkimättä.</p>
+          <p class="en" style="display:none;">We deliver modern websites quickly — without losing quality.</p>
         </div>
     
         <div class="card">
           <img src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/svg/line/money-bill.svg" alt="Affordable"/>
-          <h3>Affordable Prices</h3>
-          <p>Affordable websites designed by IT students to help your business shine online.</p>
+          <h3 class="fi">Edulliset hinnat</h3>
+          <h3 class="en" style="display:none;">Affordable Prices</h3>
+          <p class="fi">Edullisia verkkosivuja IT-opiskelijoiden toteuttamana.</p>
+          <p class="en" style="display:none;">Affordable websites designed by IT students to help your business shine online.</p>
         </div>
     
         <div class="card">
           <img src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/svg/line/globe.svg" alt="Professional"/>
-          <h3>Professional Quality</h3>
-          <p>Responsive, mobile-ready designs that build trust and visibility.</p>
+          <h3 class="fi">Ammattimainen laatu</h3>
+          <h3 class="en" style="display:none;">Professional Quality</h3>
+          <p class="fi">Responsiiviset ja mobiiliystävälliset sivut, jotka lisäävät luottamusta ja näkyvyyttä.</p>
+          <p class="en" style="display:none;">Responsive, mobile-ready designs that build trust and visibility.</p>
         </div>
       </div>
-    </section>
+    </section>    
   </div>
 
   <section class="about" id="about">
     <div class="about-container">
       <div class="about-text">
-        <h2>About Us</h2>
-        <p>
+        <h2 class="fi">Tietoa meistä</h2>
+        <h2 class="en" style="display:none;">About Us</h2>
+  
+        <p class="fi">
+          Olemme Idriz ja Nihad, IT-insinööriopiskelijoita Metropolia Ammattikorkeakoulusta.
+          Webdevingin kautta autamme yrityksiä siirtymään verkkoon moderneilla, nopeilla ja edullisilla verkkosivuilla.
+          Panostamme korkealaatuiseen suunnitteluun ja monikieliseen palveluun suomeksi, englanniksi, albaniaksi ja arabiaksi.
+        </p>
+  
+        <p class="en" style="display:none;">
           We are Idriz and Nihad, IT engineering students from Metropolia University of Applied Sciences.
-          Under the name <strong>Webdeving</strong>, we help businesses go online with modern, fast and affordable websites.
-          We focus on high-quality design and multilingual service in Finnish, English, Albanian and Arabic.
+          Under the name Webdeving, we help businesses go online with modern, fast, and affordable websites.
+          We focus on high-quality design and multilingual service in Finnish, English, Albanian, and Arabic.
         </p>
       </div>
-
+  
       <div class="about-image">
         <img src="images/webdesign.jpg" alt="Web Design">
       </div>
     </div>
   </section>
-
+  
   <section id="contact" class="contact">
     <div class="contact-container">
       <div class="contact-image">
         <img src="images/wb2.jpg" alt="Profile">
       </div>
-
+  
       <div class="contact-info">
-        <h2>Contact Us</h2>
+        <h2 class="fi">Ota yhteyttä</h2>
+        <h2 class="en" style="display:none;">Contact Us</h2>
+  
         <p>+358 451485832</p>
         <p>webdeving@hotmail.com</p>
-        <p>Helsinki, FINLAND</p>
-
-        <h3 class="text-2xl font-semibold mt-8 mb-4">Follow Us on Social</h3>
+        <p>Helsinki, SUOMI / FINLAND</p>
+  
+        <h3 class="fi text-2xl font-semibold mt-8 mb-4">Seuraa meitä somessa</h3>
+        <h3 class="en text-2xl font-semibold mt-8 mb-4" style="display:none;">Follow Us on Social</h3>
+  
         <div class="social-icons">
-          <a href="https://www.instagram.com/" class="social-icon" target="_blank">
+          <a href="https://www.instagram.com/webdeving1/" class="social-icon" target="_blank">
             <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/instagram.svg" alt="Instagram">
           </a>
-          <a href="https://x.com/" class="social-icon" target="_blank">
+          <a href="https://x.com/WebDeving1" class="social-icon" target="_blank">
             <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/twitter.svg" alt="X">
           </a>
-          <a href="https://www.facebook.com/" class="social-icon" target="_blank">
+          <a href="https://www.facebook.com/profile.php?id=61575616620815" class="social-icon" target="_blank">
             <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/facebook.svg" alt="Facebook">
           </a>
           <a href="https://www.linkedin.com/" class="social-icon" target="_blank">
@@ -625,5 +219,24 @@
       });
     });
   </script>
+  <script>
+    function setLanguage(lang) {
+      if (lang === 'fi') {
+        document.querySelectorAll('.fi').forEach(el => el.style.display = 'block');
+        document.querySelectorAll('.en').forEach(el => el.style.display = 'none');
+        // Korosta aktiivinen kieli
+        document.getElementById('text-fi').style.fontWeight = 'bold';
+        document.getElementById('text-en').style.fontWeight = 'normal';
+      } else if (lang === 'en') {
+        document.querySelectorAll('.fi').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.en').forEach(el => el.style.display = 'block');
+        // Korosta aktiivinen kieli
+        document.getElementById('text-fi').style.fontWeight = 'normal';
+        document.getElementById('text-en').style.fontWeight = 'bold';
+      }
+    }
+    </script>
+    
+    
 </body>
 </html>
